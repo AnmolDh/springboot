@@ -36,7 +36,7 @@ public class JournalEntityControllerV2 {
 
     @PutMapping("/update/{id}")
     public void updateEntryById(@PathVariable int id, @RequestBody JournalEntity newEntry){
-        JournalEntity oldEntry = journalService.findById(id).orElse(null);
+        JournalEntity oldEntry = journalService.findById(id);
         if (oldEntry != null) {
             oldEntry.setTitle(newEntry.getTitle() != null ? newEntry.getTitle() : oldEntry.getTitle());
             oldEntry.setContent(newEntry.getContent() != null ? newEntry.getContent() : oldEntry.getContent());
