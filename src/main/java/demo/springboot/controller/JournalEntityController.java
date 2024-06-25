@@ -1,6 +1,7 @@
 package demo.springboot.controller;
 
 import demo.springboot.entity.JournalEntity;
+import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1")
 public class JournalEntityController {
-    private final Map<Long, JournalEntity> journalEntries = new HashMap<>();
+    private final Map<ObjectId, JournalEntity> journalEntries = new HashMap<>();
 
     @GetMapping("/getEntries")
     public List<JournalEntity> getAll(){
