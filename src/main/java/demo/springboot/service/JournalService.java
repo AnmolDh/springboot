@@ -6,6 +6,7 @@ import demo.springboot.repository.JournalRepo;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class JournalService {
     @Autowired
     private UserService userService;
 
+    @Transactional
     public void saveEntity(JournalEntity journalEntity, String username){
         UserEntity user = userService.findByUsername(username);
         JournalEntity saved = journalRepo.save(journalEntity);
@@ -36,6 +38,7 @@ public class JournalService {
         return journalRepo.findById(id).get();
     }
 
+    @Transactional
     public void deleteById(ObjectId id, String username){
         UserEntity user = userService.findByUsername(username);
         user.getJournalEntities().removeIf(x -> x.getId().equals(id));
